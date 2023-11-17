@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="/firebase.js"></script>
+    <style>
+        /* Add some basic styling for the box */
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 50px auto; /* Center the box horizontally */
+            text-align: center;
+            line-height: 200px; /* Center the content vertically */
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: none; /* Hide the box initially */
+        }
+
+        
+
+        /* Add styling for the navigation bar */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <title>Dynamic Box Color</title>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" onclick="loadPage('test.html')">CSM</a>
+        <a href="#" onclick="loadPage('parkslots.html')">CCS</a>
+        <a href="#" onclick="loadPage('test1.html')">COET</a>
+    </nav>
+
+    <!-- Content Box -->
+    <div id="statusBox" class="box"></div>
+
+    <script>
+        async function loadPage(pageUrl) {
+            try {
+                const response = await fetch(pageUrl);
+                const html = await response.text();
+
+                // Update the content of statusBox with the content of the clicked page
+                const statusBox = document.getElementById('statusBox');
+                if (statusBox) {
+                    statusBox.innerHTML = html;
+                    statusBox.style.display = 'block'; // Always show the box when loading a page
+                }
+            } catch (error) {
+                console.error(`Error loading ${pageUrl}:`, error);
+            }
+        }
+    </script>
+</body>
+</html>
