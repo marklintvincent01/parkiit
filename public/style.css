@@ -1,0 +1,80 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, nav, main, footer {
+    margin: 20px;
+}
+
+header {
+    background-color: #f7b2b1;
+    padding: 10px;
+    text-align: center;
+}
+
+nav {
+    background-color: #a7c7e7;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+main {
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #a7c7e7;
+    padding: 10px;
+    text-align: center;
+}
+
+ /* Add some basic styling for the box */
+ .box {
+    width: 300px;
+    height: 300px;
+    margin: 50px auto; /* Center the box horizontally */
+    text-align: center;
+    line-height: 300px; /* Center the content vertically */
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    background-color: #3498db; /* Default background color */
+}
+
+/* Style for pagination links */
+.pagination {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #3498db;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination a:hover {
+    background-color: #2980b9;
+}

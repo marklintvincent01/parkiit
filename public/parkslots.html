@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="/firebase.js"></script>
+    <style>
+        /* Add some basic styling for the box */
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 50px auto; /* Center the box horizontally */
+            text-align: center;
+            line-height: 200px; /* Center the content vertically */
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <title>Dynamic Box Color</title>
+</head>
+<body>
+    <!-- Content specific to parkslots.html -->
+    <div class="box">
+        Content inside parkslots.html
+    </div>
+
+    <script>
+        // JavaScript code for color-changing box in parkslots.html
+        const statusBox = document.querySelector('.box');
+
+        // Simulate changing the color based on a condition (replace this with your logic)
+        const shouldTurnRed = true;
+        statusBox.style.backgroundColor = shouldTurnRed ? '#e74c3c' : '#2ecc71';
+    </script>
+</body>
+</html>
