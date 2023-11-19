@@ -15,4 +15,166 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+.mt-4 {
+  margin: 10px;
+}
+/* ./app/page.css */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+/* Add any additional styling for your page here */
+.mike {
+ /* display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; */
+}
+.bark {
+  text-align: center;
+  margin: 0px;
+}
+
+/* ./app/styles.css */
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.sads {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.status-box {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.occupied {
+  background-color: #e74c3c; /* Red color for occupied */
+}
+
+.vacant {
+  background-color: #2ecc71; /* Green color for vacant */
+}
+/* Add these styles to your CSS file or in the head of your HTML document */
+
+/* Styles for sliding and bouncing effect */
+@keyframes slideInAndBounce {
+  0%, 100% {
+    transform: translateX(10%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  70% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bark.slide-in-and-bounce {
+  animation: slideInAndBounce 0.5s ease-in-out;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+.mt-4 {
+  margin: 10px;
+}
+/* ./app/page.css */
+/* ./app/page.css */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.squash {
+  display: flex;
+  flex-direction: column; /* Align "Back" button and content vertically */
+  justify-content: center;
+  align-items: center;
+}
+.bottoms {
+  display: flex;
+  flex-direction: column; /* Align "Back" button and content vertically */
+  justify-content: center;
+  align-items: center;
+}
+
+.bark {
+  text-align: center;
+  margin: 0px;
+  display: flex;
+  flex-direction: column; /* Align "Back" button and content vertically */
+  align-items: center;
+}
+
+
+/* ./app/styles.css */
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.sads {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.status-box {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.occupied {
+  background-color: #e74c3c; /* Red color for occupied */
+}
+
+.vacant {
+  background-color: #2ecc71; /* Green color for vacant */
+}
+/* Add these styles to your CSS file or in the head of your HTML document */
+
+/* Styles for sliding and bouncing effect */
+@keyframes slideInAndBounce {
+  0%, 100% {
+    transform: translateX(10%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  70% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bark.slide-in-and-bounce {
+  animation: slideInAndBounce 0.5s ease-in-out;
+}
 
