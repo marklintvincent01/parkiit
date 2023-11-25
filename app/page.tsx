@@ -135,12 +135,7 @@ export default function Home() {
                 >
                   CASS
                 </button>
-                <button
-                  className="bg-gray-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded shadow-md"
-                  onClick={handleCSMButtonClick}
-                >
-                  CSM
-                </button>
+              
               </div>
             )}
             {showBackButton && (
