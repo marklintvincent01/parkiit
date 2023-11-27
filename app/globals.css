@@ -1,0 +1,140 @@
+.relative {
+    position: relative;
+  }
+  
+  .ccs1,
+  .prism1,
+  .gym1,
+  .coet1,
+  .csm1,
+  .ids1,
+  .cashier1 {
+    position: absolute;
+    flex-shrink: 0;
+    border: 5px solid #F88B8B;
+    background: #EF7171;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease, width 0.5s ease, height 0.5s ease; /* Adjusting the timing function for width and height transitions */
+    border-radius: 10px; /* Add rounded corners with a radius of 10px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .ccs1,
+  .prism1,
+  .gym1,
+  .coet1,
+  .csm1,
+  .ids1,
+  .cashier1::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+  }
+  
+  .ccs1 {
+    top: 230px;
+    left: 360px;
+    width: 29.784px;
+    height: 130.53px;
+    transform: rotate(34deg);
+    background: #b3e5f9;
+    border-color: #8edefe;
+  }
+  
+  .prism1 {
+    left: 270px;
+    top: 20px;
+    width: 31.439px;
+    height: 25px;
+    transform: rotate(32.268deg);
+  }
+  
+  .gym1 {
+    top: 80px;
+    left: 380px;
+    width: 31.439px;
+    height: 25px;
+    transform: rotate(35.352deg);
+  }
+  
+  .coet1 {
+    left: 220px;
+    top: 80px;
+    width: 101.504px;
+    height: 209.025px;
+    transform: rotate(34deg);
+  }
+  
+  .csm1 {
+    top: 120px;
+    left: 330px;
+    width: 39.658px;
+    height: 220.99px;
+    transform: rotate(34deg);
+  }
+  
+  .ids1 {
+    top: 310px;
+    left: 120px;
+    width: 190px;
+    height: 60px;
+    transform: rotate(34deg);
+  }
+  
+  .cashier1 {
+    top: 400px;
+    left: 110px;
+    width: 190.39px;
+    height: 25px;
+    transform: rotate(34deg);
+
+  }
+  
+  /* Show the text by default */
+  .ccs1::after {
+    content: "CCS";
+  }
+  
+  .prism1::after {
+    content: "Prism";
+  }
+  
+  .gym1::after {
+    content: "Gym";
+  }
+  
+  .coet1::after {
+    content: "COET";
+  }
+  
+  .csm1::after {
+    content: "CSM";
+  }
+  
+  .ids1::after {
+    content: "IDS";
+  }
+  
+  .cashier1::after {
+    content: "Cashier";
+  }
+  
+  /* Add hover styles */
+  .ccs1:hover,
+  .prism1:hover,
+  .gym1:hover,
+  .coet1:hover,
+  .csm1:hover,
+  .ids1:hover,
+  .cashier1:hover {
+    background: #FF8F8F;
+    border-color: #FF8F8F;
+    transform: scale(1.1) rotate(30deg); /* Increase scale by 10% and rotate by 1 degree on hover */
+  }
+  

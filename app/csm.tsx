@@ -1,12 +1,15 @@
-// ./app/csm.tsx
+// ./app/page.tsx
+"use client";
 import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue } from 'firebase/database';
+
+import Image from 'next/image';
+
 import './globals.css'; // Import the CSS file
 
 const firebaseConfig = {
-  // Your Firebase config here
-   apiKey: "AIzaSyAtsKBwASydm6x8-kQVM0DuTFed7U8NOd0",
+  apiKey: "AIzaSyAtsKBwASydm6x8-kQVM0DuTFed7U8NOd0",
   authDomain: "parkiit.firebaseapp.com",
   projectId: "parkiit",
   storageBucket: "parkiit.appspot.com",
@@ -19,68 +22,64 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
 
-export default function CSM() {
-  const [statusCSM1, setStatusCSM1] = useState(null);
-  const [statusCSM2, setStatusCSM2] = useState(null);
+export default function Home() {
+  const [statuses, setStatuses] = useState({
+    CSM1: '',
+    CSM2: '',
+    // Add more parking spaces as needed
+  });
 
   useEffect(() => {
-    const statusRefCSM1 = ref(database, 'PARKING/CSM1/STATUS');
-    const statusRefCSM2 = ref(database, 'PARKING/CSM2/STATUS');
+    const parkingSpaces = ['CSM1', 'CSM2']; // Add more parking spaces as needed
 
-    const handleDataCSM1 = (snapshot) => {
-      const statusValue = snapshot.val();
-      if (statusValue !== null) {
-        console.log('Received status from Firebase (CSM1):', statusValue);
-        setStatusCSM1(statusValue);
-      } else {
-        console.error('Failed to retrieve status from Firebase (CSM1).');
-      }
-    };
+    const cleanupFunctions = parkingSpaces.map((space) => {
+      const statusRef = ref(database, `PARKING/${space}/STATUS`);
 
-    const handleDataCSM2 = (snapshot) => {
-      const statusValue = snapshot.val();
-      if (statusValue !== null) {
-        console.log('Received status from Firebase (CSM2):', statusValue);
-        setStatusCSM2(statusValue);
-      } else {
-        console.error('Failed to retrieve status from Firebase (CSM2).');
-      }
-    };
+      return onValue(statusRef, (snapshot) => {
+        const statusValue = snapshot.val();
+        if (statusValue !== null) {
+          console.log(`Received status for ${space} from Firebase:`, statusValue);
+          setStatuses((prevStatuses) => ({
+            ...prevStatuses,
+            [space]: statusValue,
+          }));
+        } else {
+          console.error(`Failed to retrieve status for ${space} from Firebase.`);
+        }
+      });
+    });
 
-    onValue(statusRefCSM1, handleDataCSM1);
-    onValue(statusRefCSM2, handleDataCSM2);
-
-    // Cleanup functions
     return () => {
-      onValue(statusRefCSM1, handleDataCSM1);
-      onValue(statusRefCSM2, handleDataCSM2);
+      // Cleanup functions if needed
+      cleanupFunctions.forEach((cleanup) => cleanup());
     };
   }, []);
 
   return (
-    <main className="flex flex-col items-center justify-center">
-      <h1 className="text-3xl font-bold mb-4">CSM</h1>
-      <div className="mb-8">DIGITAL MAP APPEARS HERE</div>
-      {statusCSM1 !== null && statusCSM2 !== null && (
-        <div className="flex items-center">
-          <div
-            id="statusBoxCSM1"
-            className={`p-4 rounded ${
-              statusCSM1 ? 'bg-red-500' : 'bg-green-500'
-            } text-white`}
-          >
-            Status CSM1: {statusCSM1 ? 'Occupied' : 'Vacant'}
-          </div>
-          <div
-            id="statusBoxCSM2"
-            className={`p-4 rounded ${
-              statusCSM2 ? 'bg-red-500' : 'bg-green-500'
-            } text-white ml-4`}
-          >
-            Status CSM2: {statusCSM2 ? 'Occupied' : 'Vacant'}
-          </div>
+    <main className="flex flex-col justify-center">
+      <div className="flex flex-col main-container gap-20 rounded-lg bg-4E525A p-2">
+      <div className="flex relative  justify-center items-center text-3xl min-h-[200px]">
+  <span className="text-gray-500">
+     
+    {/* ------MAP------ */}
+   <div>MAP GOES HERE</div>
+     </span>
+</div>
+        <div className="flex flex-row gap-5">
+          {Object.entries(statuses).map(([space, status]) => (
+            <div key={space} className="flex items-center max-w-[120px] max-h-[200px]">
+              <div
+                id={`${space}StatusBox`}
+                className={`p-4 rounded ${
+                  status ? 'bg-red-500' : 'bg-green-500'
+                } text-white`}
+              >
+                {`${space} Status: ${status ? 'Occupied' : 'Vacant'}`}
+              </div>
+            </div>
+          ))}
         </div>
-      )}
+      </div>
     </main>
   );
 }

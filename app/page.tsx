@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+// Import necessary modules and configure Firebase
+import React, { useState } from 'react';
 import CCS from './ccs';
 import CSM from './csm';
-import './globals.css'; // Import the CSS file
+import COET from './coet'; // Import the COET component
 import 'tailwindcss/tailwind.css'; // Import Tailwind CSS styles
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 
 // Error Boundary
 class ErrorBoundary extends React.Component {
@@ -31,6 +32,7 @@ class ErrorBoundary extends React.Component {
   }
 }
 
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAtsKBwASydm6x8-kQVM0DuTFed7U8NOd0",
   authDomain: "parkiit.firebaseapp.com",
@@ -42,126 +44,119 @@ const firebaseConfig = {
   measurementId: "G-FM5W79GYB2"
 };
 
+// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
 
 export default function Home() {
-  const [status, setStatus] = useState(null);
+  // State variables
   const [showCCSContent, setShowCCSContent] = useState(false);
   const [showCSMContent, setShowCSMContent] = useState(false);
+  const [showCOETContent, setShowCOETContent] = useState(false);
   const [showBackButton, setShowBackButton] = useState(false);
+  const [showDefaultContent, setShowDefaultContent] = useState(true);
 
-  useEffect(() => {
-    const statusRef = ref(database, 'PARKING/CCS1/STATUS');
-
-    const handleStatusChange = (snapshot) => {
-      const statusValue = snapshot.val();
-      if (statusValue !== null) {
-        console.log('Received status from Firebase:', statusValue);
-        setStatus(statusValue);
-      } else {
-        console.error('Failed to retrieve status from Firebase.');
-      }
-    };
-
-    // Subscribe to status changes
-    onValue(statusRef, handleStatusChange);
-
-    // Unsubscribe from status changes when component unmounts
-    return () => {
-      onValue(statusRef, handleStatusChange);
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
-
+  // Functions
   const handleCCSButtonClick = () => {
     setShowCSMContent(false);
     setShowCCSContent(true);
+    setShowCOETContent(false);
     setShowBackButton(true);
+    setShowDefaultContent(false);
   };
 
   const handleCSMButtonClick = () => {
     setShowCCSContent(false);
     setShowCSMContent(true);
+    setShowCOETContent(false);
     setShowBackButton(true);
+    setShowDefaultContent(false);
+  };
+
+  const handleCOETClick = () => {
+    setShowCSMContent(false);
+    setShowCCSContent(false);
+    setShowCOETContent(true);
+    setShowBackButton(true);
+    setShowDefaultContent(false);
   };
 
   const handleBackButtonClick = () => {
     setShowCCSContent(false);
     setShowCSMContent(false);
+    setShowCOETContent(false);
     setShowBackButton(false);
+    setShowDefaultContent(true);
   };
 
+  // JSX structure
   return (
-    <main className="flex justify-center min-h-screen mt-8" style={{ fontFamily: "'Microsoft JhengHei UI', sans-serif" }}>
-      <style>{`
-        body, html {
-          margin: 0;
-          padding: 0;
-          background-color: #36393F;
-        }
-      `}</style>
-      <div className={`main-container ${showBackButton ? 'slide-left' : ''}`}>
-        <div className="frag" style={{ display: 'flex', flexDirection: 'column' }}>
-          <div className="flex items-baseline">
-        <div className="text-5xl font-marmelad text-white">
-            Welcome to
-          </div>
-          <div className="text-9xl font-microsoftjhenghei text-white">
-            Parkiit
-          </div>
-          </div>
-          <div className="border-t border-gray-300 my-4"></div>
-          <div className="text-lg mb-4 font-marmelad text-white">
-          Please choose an area:
-          </div>
-          <div className="flex">
-            {!showBackButton && !showCCSContent && !showCSMContent && (
-              <div className="flex items-center space-x-4">
-                <button
-                  className="bg-gray-700 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded shadow-md"
-                  onClick={handleCCSButtonClick}
-                >
-                  CCS
-                </button>
-                <button
-                  className="bg-gray-700 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-md"
-                  onClick={handleCSMButtonClick}
-                >
-                  CSM
-                </button>
-                <button
-                  className="bg-gray-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded shadow-md"
-                  onClick={handleCSMButtonClick}
-                >
-                  CASS
-                </button>
-              
-              </div>
-            )}
+    <main className="flex gap-5 flex-row m-8 ml-20 mr-20 mt-15">
+      <div className="p-2 border border-gray-200 rounded-[10px] ">
+        <div className="p-3">
+          <div className="max-w-[200px] min-w-[160px] break-words">Profile</div>
+        </div>
+      </div>
+      <div className="border border-gray-200 rounded-[10px] flex-1">
+        <div className="p-2 rounded border-b border-gray-200">
+          <div className="flex gap-3 flex-row rounded">
+            <button
+              className="hover:text-blue-400 hover:bg-gray-100 text-black font-bold p-3 rounded-[8px] "
+              onClick={handleCCSButtonClick}
+            > 
+              CCS
+            </button>
+            <button
+              className="hover:text-red-400 hover:bg-gray-100 text-black font-bold p-3 rounded-[8px] "
+              onClick={handleCOETClick}
+            >
+              COET
+            </button>
+            <button
+              className="hover:text-red-600 hover:bg-gray-100 text-black font-bold p-3 rounded-[8px]"
+              onClick={handleCSMButtonClick}
+            >
+              CSM
+            </button>
             {showBackButton && (
-              <div className="">
-                <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={handleBackButtonClick}
-                >
-                  Back
-                </button>
-              </div>
+              <button
+                className="ml-auto hover:text-gray-600 hover:bg-gray-100 text-black font-bold p-3 rounded-[8px]"
+                onClick={handleBackButtonClick}
+              >
+                BACK
+              </button>
             )}
-          </div>
-
-          <div>
-            {/* Additional content */}
-          </div>
-
-          <div className={`bark mt-4 ${showBackButton ? 'animate-slide-in-left' : ''} ${showCCSContent || showCSMContent ? 'animate-disappear' : ''}`}>
-            {/* Wrap CCS component with the ErrorBoundary */}
-            <ErrorBoundary>
-              {showCCSContent && <CCS />}
-            </ErrorBoundary>
-            {showCSMContent && <CSM />}
           </div>
         </div>
+
+        <div className={`main-container ${showBackButton ? 'ml-0' : 'ml-0'}`}>
+          <div className="flex flex-col">
+            <div
+              className={`relative bark ${showBackButton ? 'animate-slide-in-left' : ''} ${showCCSContent || showCSMContent || showCOETContent ? 'animate-disappear' : ''}`}
+            >
+              {showDefaultContent && (
+                <div className="sas">
+                  <div className="ccs1 ccs1-hover" onClick={handleCCSButtonClick}></div>
+                  <div className="csm1 csm1-hover" onClick={handleCSMButtonClick}></div>
+                  <div className="coet1 coet1-hover" onClick={handleCOETClick}></div>
+                  <div className="cashier1 cashier1-hover" onClick={handleBackButtonClick}></div>
+                  <div className="ids1 ids1-hover" onClick={handleBackButtonClick}></div>
+                  <div className="gym1 gym1-hover" onClick={handleBackButtonClick}></div>
+                  <div className="prism1 prism1-hover" onClick={handleBackButtonClick}></div>
+                </div>
+              )}
+
+              <ErrorBoundary>
+                {showCCSContent && <CCS />}
+                {showCSMContent && <CSM />}
+                {showCOETContent && <COET />}
+              </ErrorBoundary>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="p-2 border border-gray-200 rounded-[10px]">
+        <div className="p-2 max-w-[200px] min-w-[160px] break-words">Data Analytics</div>
       </div>
     </main>
   );

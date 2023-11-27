@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { Link } from 'react-router-dom';
 
 import Image from 'next/image';
 
@@ -25,14 +24,15 @@ const database = getDatabase(firebaseApp);
 
 export default function Home() {
   const [statuses, setStatuses] = useState({
-    CCS1: '',
-    CCS2: '',
-    CCS3: '',
+    COET1: '',
+    COET2: '',
+    COET3: '',
+    COET4: '',
     // Add more parking spaces as needed
   });
 
   useEffect(() => {
-    const parkingSpaces = ['CCS1', 'CCS2', 'CCS3']; // Add more parking spaces as needed
+    const parkingSpaces = ['COET1', 'COET2', 'COET3', 'COET4']; // Add more parking spaces as needed
 
     const cleanupFunctions = parkingSpaces.map((space) => {
       const statusRef = ref(database, `PARKING/${space}/STATUS`);
