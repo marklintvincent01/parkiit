@@ -105,14 +105,14 @@ export default function Home() {
     fetchTotalCars();
   }, []);
 
-  const findBusyAndLeastBusyHour = (logs) => {
+  const findBusyAndLeastBusyHour = (logs: any) => {
     const busiestHour = logs.reduce(
-      (prev, current) => (prev.trafficDensity > current.trafficDensity ? prev : current),
+      (prev: any, current: any) => (prev.trafficDensity > current.trafficDensity ? prev : current),
       {}
     );
 
     const leastBusyHour = logs.reduce(
-      (prev, current) => (prev.trafficDensity < current.trafficDensity ? prev : current),
+      (prev: any, current: any) => (prev.trafficDensity < current.trafficDensity ? prev : current),
       {}
     );
 
@@ -125,7 +125,7 @@ export default function Home() {
   const { busiestHour: busiestHourOutgoing, leastBusyHour: leastBusyHourOutgoing } =
     findBusyAndLeastBusyHour(outgoingLogs);
 
-  const formatHour = (hour) => {
+  const formatHour = (hour: any) => {
     const suffix = hour < 12 ? 'am' : 'pm';
     const formattedHour = hour === 0 || hour === 12 ? 12 : hour % 12;
     return `${formattedHour} ${suffix}`;
@@ -157,7 +157,7 @@ export default function Home() {
             <div className="flex flex-col mb-2 text-sm">
               <div className="w-60 name">
                 {showName && 
-                  <div className='nam'>Name: {searchTerm.toUpperCase()}</div>
+                  <div className='nam'>ID: {searchTerm.toUpperCase()}</div>
                 }
               </div>
             </div>
