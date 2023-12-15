@@ -24,10 +24,10 @@ const database = getDatabase(firebaseApp);
 
 export default function Home() {
   const [statuses, setStatuses] = useState({
-    COET1: '',
-    COET2: '',
-    COET3: '',
-    COET4: '',
+    IDS1: '',
+    IDS2: '',
+    IDS3: '',
+    IDS4: '',
     // Add more parking spaces as needed
   });
 
@@ -64,9 +64,7 @@ export default function Home() {
   <span className="text-gray-500">
      
     {/* ------MAP------ */}
-   <div> 
-   <Image src="/images/coetpark.png" width={300} height={200} alt="Map Image" />
-
+   <div> <Image src="/images/rear.jpg" width={500} height={300} alt="Map Image" />
 </div>
      </span>
 </div>
@@ -86,8 +84,6 @@ export default function Home() {
     </div>
   ))}
 </div>
-
-
       </div>
     </main>
   );

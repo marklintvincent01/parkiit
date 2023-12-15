@@ -24,10 +24,10 @@ const database = getDatabase(firebaseApp);
 
 export default function Home() {
   const [statuses, setStatuses] = useState({
-    COET1: '',
-    COET2: '',
-    COET3: '',
-    COET4: '',
+    CASS1: '',
+    CASS2: '',
+    CASS3: '',
+    CASS4: '',
     // Add more parking spaces as needed
   });
 
@@ -59,14 +59,12 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-center">
-      <div className="flex flex-col shard min-w-[700px] main-container gap-5 rounded-lg bg-4E525A p-2">
+      <div className="flex flex-col  shard min-w-[700px] main-container gap-5 rounded-lg bg-4E525A p-2">
       <div className="flex relative  justify-center items-center text-3xl min-h-[200px]">
   <span className="text-gray-500">
      
     {/* ------MAP------ */}
-   <div> 
-   <Image src="/images/coetpark.png" width={300} height={200} alt="Map Image" />
-
+   <div> <Image src="/images/casspark.png" width={500} height={300} alt="Map Image" />
 </div>
      </span>
 </div>
@@ -86,8 +84,6 @@ export default function Home() {
     </div>
   ))}
 </div>
-
-
       </div>
     </main>
   );

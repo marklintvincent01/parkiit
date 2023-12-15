@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue } from 'firebase/database';
+
+
 import { Link } from 'react-router-dom';
 
 import Image from 'next/image';
@@ -59,28 +61,30 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-center">
-      <div className="flex flex-col main-container gap-20 rounded-lg bg-4E525A p-2">
-      <div className="flex relative  justify-center items-center text-3xl min-h-[200px]">
+      <div className="flex items-center shard min-w-[700px] flex-col main-container gap-5 rounded-lg bg-4E525A p-2">
+      <div className="flex relative  justify-center items-center text-3xl min-h-[200px] max-w-[350px] ">
   <span className="text-gray-500">
      
     {/* ------MAP------ */}
-   <div>MAP GOES HERE</div>
+    <Image src="/images/ccspark.png" width={440} height={240} alt="Map Image" />
      </span>
 </div>
-        <div className="flex flex-row gap-5">
-          {Object.entries(statuses).map(([space, status]) => (
-            <div key={space} className="flex items-center max-w-[120px] max-h-[200px]">
-              <div
-                id={`${space}StatusBox`}
-                className={`p-4 rounded ${
-                  status ? 'bg-red-500' : 'bg-green-500'
-                } text-white`}
-              >
-                {`${space} Status: ${status ? 'Occupied' : 'Vacant'}`}
-              </div>
-            </div>
-          ))}
-        </div>
+<div className="flex flex-row gap-3">
+  {Object.entries(statuses).map(([space, status]) => (
+    <div key={space} className="flex items-center max-w-[100px] max-h-[150px]">
+      <div
+        id={`${space}StatusBox`}
+        className={`p-3 rounded ${
+          status
+            ? 'bg-red-500 border-red-300 border-4'
+            : 'bg-green-500 border-green-300 border-4'
+        } text-white text-sm`}
+      >
+        {`${space} Status: ${status ? 'Occupied' : 'Vacant'}`}
+      </div>
+    </div>
+  ))}
+</div>
       </div>
     </main>
   );

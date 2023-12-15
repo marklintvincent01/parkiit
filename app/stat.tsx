@@ -1,8 +1,8 @@
-// ./app/page.tsx
-"use client";
 import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue } from 'firebase/database';
+
+import { Link } from 'react-router-dom';
 
 import Image from 'next/image';
 
@@ -24,15 +24,14 @@ const database = getDatabase(firebaseApp);
 
 export default function Home() {
   const [statuses, setStatuses] = useState({
-    COET1: '',
-    COET2: '',
-    COET3: '',
-    COET4: '',
+    CBAA1: '',
+    CBAA2: '',
+    CBAA3: '',
     // Add more parking spaces as needed
   });
 
   useEffect(() => {
-    const parkingSpaces = ['COET1', 'COET2', 'COET3', 'COET4']; // Add more parking spaces as needed
+    const parkingSpaces = ['CBAA1', 'CBAA2', 'CBAAS3']; // Add more parking spaces as needed
 
     const cleanupFunctions = parkingSpaces.map((space) => {
       const statusRef = ref(database, `PARKING/${space}/STATUS`);
@@ -58,36 +57,29 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col justify-center">
-      <div className="flex flex-col shard min-w-[700px] main-container gap-5 rounded-lg bg-4E525A p-2">
-      <div className="flex relative  justify-center items-center text-3xl min-h-[200px]">
-  <span className="text-gray-500">
-     
-    {/* ------MAP------ */}
-   <div> 
-   <Image src="/images/coetpark.png" width={300} height={200} alt="Map Image" />
-
-</div>
-     </span>
-</div>
-<div className="flex flex-row gap-3">
-  {Object.entries(statuses).map(([space, status]) => (
-    <div key={space} className="flex items-center max-w-[100px] max-h-[150px]">
-      <div
-        id={`${space}StatusBox`}
-        className={`p-3 rounded ${
-          status
-            ? 'bg-red-500 border-red-300 border-4'
-            : 'bg-green-500 border-green-300 border-4'
-        } text-white text-sm`}
-      >
-        {`${space} Status: ${status ? 'Occupied' : 'Vacant'}`}
-      </div>
-    </div>
-  ))}
-</div>
-
-
+    <main className="flex ">
+      <div className="p-4  rounded-lg border-2">
+        <table className=" border-2 w-full table-auto border-collapse border border-gray-200">
+    
+          <tbody>
+           
+          </tbody>
+        </table>
+        <div className="p-2 max-w-[200px] min-w-[160px] break-words mt-4">
+          <div className="font-bold text-base mb-2">Data Analytics</div>
+          <div className="flex flex-col mb-2 text-sm">
+            <div className="font-semibold">Traffic Density:</div>
+            <div>{/* Your traffic density data goes here */}</div>
+          </div>
+          <div className="flex flex-col mb-2 text-sm">
+            <div className="font-semibold">Peak Hour Analysis:</div>
+            <div>10am-3pm</div>
+          </div>
+          <div className="flex flex-col text-sm">
+            <div className="font-semibold">Off-Peak Hour:</div>
+            <div>4pm-6pm</div>
+          </div>
+        </div>
       </div>
     </main>
   );

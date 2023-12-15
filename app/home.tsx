@@ -1,8 +1,11 @@
+
 // ./app/page.tsx
 "use client";
 import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue } from 'firebase/database';
+
+import { Link } from 'react-router-dom';
 
 import Image from 'next/image';
 
@@ -24,15 +27,14 @@ const database = getDatabase(firebaseApp);
 
 export default function Home() {
   const [statuses, setStatuses] = useState({
-    COET1: '',
-    COET2: '',
-    COET3: '',
-    COET4: '',
+    CBAA1: '',
+    CBAA2: '',
+    CBAA3: '',
     // Add more parking spaces as needed
   });
 
   useEffect(() => {
-    const parkingSpaces = ['COET1', 'COET2', 'COET3', 'COET4']; // Add more parking spaces as needed
+    const parkingSpaces = ['CBAA1', 'CBAA2', 'CBAAS3']; // Add more parking spaces as needed
 
     const cleanupFunctions = parkingSpaces.map((space) => {
       const statusRef = ref(database, `PARKING/${space}/STATUS`);
@@ -59,35 +61,28 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-center">
-      <div className="flex flex-col shard min-w-[700px] main-container gap-5 rounded-lg bg-4E525A p-2">
+      <div className="flex shard min-w-[700px] flex-col main-container gap-10 rounded-lg bg-4E525A p-2">
       <div className="flex relative  justify-center items-center text-3xl min-h-[200px]">
   <span className="text-gray-500">
      
     {/* ------MAP------ */}
-   <div> 
-   <Image src="/images/coetpark.png" width={300} height={200} alt="Map Image" />
-
-</div>
+    <Image src="/images/cbaapark.png" width={440} height={240} alt="Map Image" />
      </span>
 </div>
-<div className="flex flex-row gap-3">
-  {Object.entries(statuses).map(([space, status]) => (
-    <div key={space} className="flex items-center max-w-[100px] max-h-[150px]">
-      <div
-        id={`${space}StatusBox`}
-        className={`p-3 rounded ${
-          status
-            ? 'bg-red-500 border-red-300 border-4'
-            : 'bg-green-500 border-green-300 border-4'
-        } text-white text-sm`}
-      >
-        {`${space} Status: ${status ? 'Occupied' : 'Vacant'}`}
-      </div>
-    </div>
-  ))}
-</div>
-
-
+        <div className="flex flex-row gap-5">
+          {Object.entries(statuses).map(([space, status]) => (
+            <div key={space} className="flex items-center max-w-[120px] max-h-[200px]">
+              <div
+                id={`${space}StatusBox`}
+                className={`p-4 rounded ${
+                  status ? 'bg-red-500' : 'bg-green-500'
+                } text-white`}
+              >
+                {`${space} Status: ${status ? 'Occupied' : 'Vacant'}`}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
