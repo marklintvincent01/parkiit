@@ -1,8 +1,11 @@
-// ./app/csm.tsx
+// ./app/page.tsx
 "use client";
 import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue } from 'firebase/database';
+
+import Image from 'next/image';
+
 import './globals.css'; // Import the CSS file
 
 const firebaseConfig = {
@@ -19,41 +22,66 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
 
-export default function CSM() {
-  const [status, setStatus] = useState(null);
+export default function Home() {
+  const [statuses, setStatuses] = useState({
+    CSM1: '',
+    CSM2: '',
+    // Add more parking spaces as needed
+  });
 
   useEffect(() => {
-    const statusRef = ref(database, 'PARKING/CSM/STATUS');
+    const parkingSpaces = ['CSM1', 'CSM2']; // Add more parking spaces as needed
 
-    onValue(statusRef, (snapshot) => {
-      const statusValue = snapshot.val();
-      if (statusValue !== null) {
-        console.log('Received status from Firebase:', statusValue);
-        setStatus(statusValue);
-      } else {
-        console.error('Failed to retrieve status from Firebase.');
-      }
+    const cleanupFunctions = parkingSpaces.map((space) => {
+      const statusRef = ref(database, `PARKING/${space}/STATUS`);
+
+      return onValue(statusRef, (snapshot) => {
+        const statusValue = snapshot.val();
+        if (statusValue !== null) {
+          console.log(`Received status for ${space} from Firebase:`, statusValue);
+          setStatuses((prevStatuses) => ({
+            ...prevStatuses,
+            [space]: statusValue,
+          }));
+        } else {
+          console.error(`Failed to retrieve status for ${space} from Firebase.`);
+        }
+      });
     });
 
     return () => {
-      onValue(statusRef, null);
+      // Cleanup functions if needed
+      cleanupFunctions.forEach((cleanup) => cleanup());
     };
   }, []);
 
   return (
-    <main className="sads">
-      <h1 className="title">CSM</h1>
-      <div>DIGITAL MAP APPEARS HERE</div>
-      {status !== null && (
-        <div className="mike">
-          <div
-            id="statusBox"
-            className={`status-box ${status ? 'occupied' : 'vacant'}`}
-          >
-            Status: {status ? 'Occupied' : 'Vacant'}
-          </div>
-        </div>
-      )}
+    <main className="flex flex-col justify-center">
+      <div className="flex flex-col items-center shard min-w-[700px] main-container gap-5 rounded-lg bg-4E525A p-2">
+      <div className="flex relative  items-center text-3xl max-w-[450px]">
+  <span className="text-gray-500">
+     
+    {/* ------MAP------ */}
+    <div> <Image src="/images/csmpark.png" width={500} height={300} alt="Map Image" /> </div>
+     </span>
+</div>
+<div className="flex flex-row gap-3">
+  {Object.entries(statuses).map(([space, status]) => (
+    <div key={space} className="flex items-center max-w-[100px] max-h-[150px]">
+      <div
+        id={`${space}StatusBox`}
+        className={`p-3 rounded ${
+          status
+            ? 'bg-red-500 border-red-300 border-4'
+            : 'bg-green-500 border-green-300 border-4'
+        } text-white text-sm`}
+      >
+        {`${space} Status: ${status ? 'Occupied' : 'Vacant'}`}
+      </div>
+    </div>
+  ))}
+</div>
+      </div>
     </main>
   );
 }

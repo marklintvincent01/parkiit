@@ -1,180 +1,373 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-.mt-4 {
-  margin: 10px;
-}
-/* ./app/page.css */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* align-items: center; */
-}
-
-/* Add any additional styling for your page here */
 .mike {
- /* display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; */
+  background-color: blue;
 }
-.bark {
-  text-align: center;
-  margin: 0px;
+.coet1,
+.cbaa,
+.csm1,
+.cafe,
+.med,
+.ccs1,
+.cer,
+.prism1,
+.cass1,
+.ids1,
+.gym1,
+.cashier1 {
+  position: absolute;
+  transform-origin: center; /* Set the transform origin to the center for scaling effect */
+  transition: transform 0.3s ease; /* Add a smooth transition for better visual effect */
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transform: rotate(30deg);
 }
-
-/* ./app/styles.css */
-.title {
-  font-size: 3rem;
-  font-weight: bold;
+body {
+  background-color: #f8f8f8; /* Set your desired background color */
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
 }
-.sads {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.coet1:hover,
+.cbaa:hover,
+.csm1:hover,
+.med:hover,
+.ccs1:hover,
+.cer:hover,
+.prism1:hover,
+.cass1:hover,
+.gym1:hover,
+.cashier1:hover {
+  transform: scale(1.1) rotate(30deg); /* Scale up on hover */
 }
-.status-box {
-  padding: 1rem;
-  border-radius: 0.25rem;
+.back:hover{
+  background-color: #f6d6d8;
   color: white;
 }
 
-.occupied {
-  background-color: #e74c3c; /* Red color for occupied */
+.home:hover,
+.analytic:hover,
+.about:hover {
+  background-color: rgb(255 109 109);
+  color: white;
+  width: 100%;
+
 }
 
-.vacant {
-  background-color: #2ecc71; /* Green color for vacant */
-}
-/* Add these styles to your CSS file or in the head of your HTML document */
 
-/* Styles for sliding and bouncing effect */
-@keyframes slideInAndBounce {
-  0%, 100% {
-    transform: translateX(10%);
+.coet1 span,
+.cbaa span,
+.csm1 span,
+.cafe span,
+.med span,
+.ccs1 span,
+.cer span,
+.prism1 span,
+.cass1 span,
+.ids1 span,
+.gym1 span,
+.cashier1 span {
+    z-index: 2; /* Ensure the text is above the background */
+    color: #fff; /* Set text color */
+    font-size: 14px; /* Adjust font size */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+.cashier1 span {
+  font-size: 11px;
+  transform: translate(-50%, -50%) rotate(1deg);
+}
+.prism1 span {
+  font-size: 11px;
+}
+.ccs1 span {
+  font-size: 13px;
+}
+.med span {
+  font-size: 11px;
+}
+.cbaa span {
+  font-size: 11px;
+}
+.ids1 span {
+  font-size: 13px;
+  transform: translate(-50%, -50%) rotate(1deg);
+}
+.cafe span {
+  font-size: 10px;
+}
+.cer span {
+  font-size: 10px;
+}
+.cbaa span {
+  font-size: 13px;
+  transform: translate(-50%, -50%) rotate(1deg); /* Center and rotate text */
+}
+.cass1 span {
+  font-size: 13px;
+  transform: translate(-50%, -50%) rotate(1deg); /* Center and rotate text */
+}
+.coet1 {
+  top: 98px;
+  left: 225px;
+  position: absolute;
+  width: 90px;
+  height: 87px;
+  border-radius: 10px;
+  border: 4px solid #E1B0C1;
+  background: #BA1C47;
+}
+.cbaa {
+  top: 192px;
+  left: 218px;
+  ;
+  width: 60px;
+  height: 40px;
+  border-radius: 10px;
+  border: 4px solid #f9ced0;
+  background: #ff9eea;
+}
+.logs {
+  border: 4px solid #f9ced0;
+
+}
+.might {
+  margin-bottom: 40px;
+}
+.datan {
+  font-size: 35px;
+  color: #e76868;
+}
+.logs-container {
+  margin-top: 10px;
+  border: 2px solid #f9ced0;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+.non {
+  border: 2px solid #f9ced0;
+
+}
+.nam {
+  font-size: 17px;
+  font-weight: bold;
+
+}
+.mayl {
+  font-size: 22px;
+}
+
+.numbr {
+  font-size: 60px;
+  color: #e76868;
+}
+.number{
+  font-size: 30px;
+  color: rgb(159, 159, 255);
+}
+.log-item {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.inc {
+  font-weight: bold;
+
+}
+.out {
+  font-weight: bold;
+
+}
+.log-label {
+  margin-right: 5px;
+}
+
+.csm1 {
+  top: 95px;
+  left: 348px;
+  ;
+  width: 40px;
+  height: 120px;
+  border-radius: 10px;
+  border: 4px solid #F5BABC;
+  background: #CD5B5C;
+}
+.cafe {
+  top: 210px;
+  left: 299px;
+  ;
+  width: 40px;
+  height: 60px;
+  border-radius: 10px;
+  border: 4px solid #F3B5B5;
+  background: #EF7171;
+}
+.mad {
+  position: absolute;
+
+}
+.side {
+  border: 4px #fbe3e3 solid;
+}
+
+.sas {
+  position: relative;
+  /* left: -280px; */
+  top: -20px;
+  width: 100vh;
+  height: 70vh;
+}
+.shard {
+  width: auto;
+  height: auto;
+  border: solid 2px #fbe3e3;
+  min-width: 700px;
+}
+.bark {
+  width: 100%;
+    height: 100%;
+}
+.footer {
+  width: 100%;
+    height: 100%;
+    /* border: solid 2px blue; */
   }
-  50% {
-    transform: translateX(0);
-  }
-  70% {
-    transform: translateX(-10px);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.may {
+  margin-top: -80px;
 }
+.med {
+  top: 265px;
+  left: 345px;
+  width: 40px;
+  height: 50px;
+  border-radius: 10px;
+  border: 4px solid #F3B5B5;
+  background: #EF7171;
+}
+.back {
+  color: black;
+}
+.ccs1 {
+  top: 180px;
+  left: 383px;
+  width: 40px;
+  height: 85px;
+  border-radius: 10px;
+  border: 4px solid #8CD8E2;
+  background: #4BB2BF;
 
-.bark.slide-in-and-bounce {
-  animation: slideInAndBounce 0.5s ease-in-out;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-.mt-4 {
-  margin: 10px;
-}
-/* ./app/page.css */
-/* ./app/page.css */
-.main-container {
+.parental {
   display: flex;
   flex-direction: row;
+}
+.iit {
+  color: #e53434;
+
+}
+.park {
+  font-weight: 500;
+  font-size: 20px;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
+
+.left-nav {
+  width: 200px;
+  height: 200px; 
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+.might {
+  border: 4px solid #fbe3e3;
+}
+.have {
+  border: 4px solid #fbe3e3;
+  max-width: 800px;
+
+}
+.cer {
+  top: 132px;
+  left: 407px;
+  ;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 4px solid #F3B5B5;
+  background: #EF7171;
+
+}
+.prism1 {
+  top: 20px;
+  left: 235px;
+  ;
+  width: 40px;
+  height: 50px;
+  border-radius: 10px;
+  border: 4px solid #F3B5B5;
+  background: #EF7171;
+}
+.cass1 {
+  top: 239px;
+  left: 162px;
+  ;
+  width: 65px;
+  height: 45px;
+  border-radius: 10px;
+  border: 4px solid #B2F3AD;
+  background: #5CD34E;
+}
+
+.ids1 {
+  top: 280px;
+  left: 227px;
+  ;
+  width: 75px;
+  height: 45px;
+  border-radius: 10px;
+  border: 4px solid #FBC7EB;
+  background: #F389D3;
+}
+.search {
+  z-index: 1;
+  border: 2px #fbe3e3 solid;
+  color: #5c5c5c;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.squash {
-  display: flex;
-  flex-direction: column; /* Align "Back" button and content vertically */
-  justify-content: center;
-  align-items: center;
+.gym1 {
+  top: 50px;
+  left: 328px;
+  ;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 4px solid #F3B5B5;
+  background: #EF7171;
 }
-.bottoms {
-  display: flex;
-  flex-direction: column; /* Align "Back" button and content vertically */
-  justify-content: center;
-  align-items: center;
+.back {
+  margin-left: -105px;
+  z-index: 1;
+  border: 2px #fbe3e3 solid;
+
+}
+.cashier1 {
+  top: 373px;
+  left: 240px;
+  ;
+  width: 90px;
+  height: 40px;
+  border-radius: 10px;
+  border: 4px solid #F3B5B5;
+  background: #EF7171;
+
 }
 
-.bark {
-  text-align: center;
-  margin: 0px;
-  display: flex;
-  flex-direction: column; /* Align "Back" button and content vertically */
-  align-items: center;
+.roads {
+  position: absolute;
+  left: 200px;
+  top: 70px;
 }
-
-
-/* ./app/styles.css */
-.title {
-  font-size: 3rem;
-  font-weight: bold;
-}
-.sads {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-.status-box {
-  padding: 1rem;
-  border-radius: 0.25rem;
-  color: white;
-}
-
-.occupied {
-  background-color: #e74c3c; /* Red color for occupied */
-}
-
-.vacant {
-  background-color: #2ecc71; /* Green color for vacant */
-}
-/* Add these styles to your CSS file or in the head of your HTML document */
-
-/* Styles for sliding and bouncing effect */
-@keyframes slideInAndBounce {
-  0%, 100% {
-    transform: translateX(10%);
-  }
-  50% {
-    transform: translateX(0);
-  }
-  70% {
-    transform: translateX(-10px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.bark.slide-in-and-bounce {
-  animation: slideInAndBounce 0.5s ease-in-out;
-}
-

@@ -4,9 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
-
-import { Link } from 'react-router-dom';
-
 import Image from 'next/image';
 
 import './globals.css'; // Import the CSS file
@@ -27,14 +24,15 @@ const database = getDatabase(firebaseApp);
 
 export default function Home() {
   const [statuses, setStatuses] = useState({
-    CCS1: '',
-    CCS2: '',
-    CCS3: '',
+    COET1: '',
+    COET2: '',
+    COET3: '',
+    COET4: '',
     // Add more parking spaces as needed
   });
 
   useEffect(() => {
-    const parkingSpaces = ['CCS1', 'CCS2', 'CCS3']; // Add more parking spaces as needed
+    const parkingSpaces = ['COET1', 'COET2', 'COET3', 'COET4']; // Add more parking spaces as needed
 
     const cleanupFunctions = parkingSpaces.map((space) => {
       const statusRef = ref(database, `PARKING/${space}/STATUS`);
@@ -61,12 +59,15 @@ export default function Home() {
 
   return (
     <main className="flex flex-col justify-center">
-      <div className="flex items-center shard min-w-[700px] flex-col main-container gap-5 rounded-lg bg-4E525A p-2">
-      <div className="flex relative  justify-center items-center text-3xl min-h-[200px] max-w-[350px] ">
+      <div className="flex flex-col shard min-w-[700px] main-container gap-5 rounded-lg bg-4E525A p-2">
+      <div className="flex relative  justify-center items-center text-3xl min-h-[200px]">
   <span className="text-gray-500">
      
     {/* ------MAP------ */}
-    <Image src="/images/ccspark.png" width={440} height={240} alt="Map Image" />
+   <div> 
+   <Image src="/images/coetpark.png" width={300} height={200} alt="Map Image" />
+
+</div>
      </span>
 </div>
 <div className="flex flex-row gap-3">
@@ -85,6 +86,8 @@ export default function Home() {
     </div>
   ))}
 </div>
+
+
       </div>
     </main>
   );

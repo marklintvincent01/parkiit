@@ -1,68 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/database';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAtsKBwASydm6x8-kQVM0DuTFed7U8NOd0",
+  authDomain: "parkiit.firebaseapp.com",
+  projectId: "parkiit",
+  storageBucket: "parkiit.appspot.com",
+  databaseURL: "https://parkiit-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  messagingSenderId: "337466403051",
+  appId: "1:337466403051:web:c8d961e6ae6e8c8e0a76ae",
+  measurementId: "G-FM5W79GYB2"
 };
 
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const App = () => {
-  const [statusContent, setStatusContent] = useState('');
-  const [statusColor, setStatusColor] = useState('#ffffff'); // Default color
-  const parkingRef = firebase.database().ref('PARKING/CCS1/STATUS');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const snapshot = await parkingRef.once('value');
-        const status = snapshot.val();
-        setStatusContent(status ? 'Occupied' : 'Vacant');
-        setStatusColor(status ? '#ff0000' : '#00ff00'); // Red for occupied, green for vacant
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-
-    // Set up a listener for real-time updates
-    const statusListener = parkingRef.on('value', (snapshot) => {
-      const status = snapshot.val();
-      setStatusContent(status ? 'Occupied' : 'Vacant');
-      setStatusColor(status ? '#ff0000' : '#00ff00');
-    });
-
-    // Clean up the listener on component unmount
-    return () => {
-      parkingRef.off('value', statusListener);
-    };
-  }, [parkingRef]);
-
-  return (
-    <div>
-      {/* Navigation Bar */}
-      <nav>
-        {/* Add your navigation links here if needed */}
-      </nav>
-
-      {/* Content Box */}
-      <div
-        id="statusBox"
-        className="box"
-        style={{ display: statusContent ? 'block' : 'none', backgroundColor: statusColor }}
-      >
-        {statusContent}
-      </div>
-    </div>
-  );
-};
-
-export { useClient } from 'react-server-dom-webpack/client';
+export { db };
